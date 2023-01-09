@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
+const logger = require('morgan');
 
 // Routers
 const venueManagementRouter = require('./routes/venueManagement');
@@ -14,6 +15,9 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Log requests
+app.use(logger('dev'));
 
 // Linkers
 app.use('/venue-management', venueManagementRouter);
